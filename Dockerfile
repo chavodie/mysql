@@ -10,7 +10,8 @@ RUN ["yum", "-y", "install", "community-mysql-server"]
 
 WORKDIR /usr/bin
 #RUN ["mysqld_safe", "--basedir=/usr"]
-RUN ["/usr/libexec/mysqld", "--datadir=/var/lib/mysql", "&&", "mysqladmin", "-u", "root", "password", "$myPasword", "&&", "mysql", "-u", "root", "-p$myPassword", "-e", "grant all privileges on *.* to wordpress@'%' identified by 'wppass';"]
+#RUN ["/usr/libexec/mysqld", "--datadir=/var/lib/mysql", "&&", "mysqladmin", "-u", "root", "password", "$myPasword", "&&", "mysql", "-u", "root", "-p$myPassword", "-e", "grant all privileges on *.* to wordpress@'%' identified by 'wppass';"]
+RUN ["mysqld_safe", "--basedir=/usr", "&&", "mysqladmin", "-u", "root", "password", "$myPasword"]
 #RUN ["mysql", "-u", "root", "-p$myPassword", "-e", "grant all privileges on *.* to wordpress@'%' identified by 'wppass';"]
 
 
